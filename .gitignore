@@ -1,0 +1,5 @@
+data
+__pycache__/
+lightning_logs/
+pretrained_models/
+FullSubNet/

@@ -3,30 +3,45 @@
   <head>
     <title> SD-cRIRc </title>
     <meta encoding="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-    <div id="title_authors" style="text-align:center"> 
-    <h1> Speech dereverberation constrained on room impulse response characteristics </h1>
-<p>
-    <b> Louis Bahrman<sup>1</sup>, Mathieu Fontaine<sup>1</sup>, Jonathan Le Roux<sup>2</sup>, Gaël Richard<sup>1</sup></b>
-</p>
-<p> <sup>1</sup>LTCI, Télécom Paris, IP-Paris, France; <sup>2</sup> MERL, Cambridge, MA, USA</p>
+    <header>
+      <div id="title_authors" class="titlecenter"> 
+        <h1> Speech dereverberation constrained on room impulse response characteristics </h1>
+      </div>
+      <div class="center">
+        <p style="text-align:center">
+        <b> Louis Bahrman<sup>1</sup>, Mathieu Fontaine<sup>1</sup>, Jonathan Le Roux<sup>2</sup>, Gaël Richard<sup>1</sup></b>
+        </p>
+        <p style="text-align:center"> <sup>1</sup>LTCI, Télécom Paris, IP-Paris, France; <sup>2</sup> MERL, Cambridge, MA, USA</p>
+        <hr>
+      </div>
+      <div class="center" style="max-width:600px">
+        <div class="container">
+          <a href="https://www.arxiv.org/abs/2407.08657">Paper (Arxiv)</a> &nbsp;
+          <a href="https://hal.science/hal-04640068/">Paper (HAL)</a> &nbsp;
+          <a href="https://www.github.com/Louis-Bahrman/SD-cRIRc">Code</a> &nbsp;
+          <a href="poster.pdf" target="_blank">Poster</a>
+        </div>
+      </div>
+    </header>
+    <div class="center">
+      <hr>
     </div>
-<nav>
-<hr style="width: 50%">
-<p style="text-align:center; margin:0"> &nbsp;
-<a href="https://www.arxiv.org/abs/2407.08657">Article</a> &nbsp;
-
-    <a href="https://www.github.com/Louis-Bahrman/SC-cRIRc">Code</a> &nbsp;
-
-    <a href="poster.pdf" target="_blank">Poster</a>
-</p>
-<hr style="width: 50%">
-</nav>
-<div align=center width=70%>
-<figure>
-<img style="float:none;" src="block_diagram.svg" alt="Box diagram">
-</figure>
-</div>
+    <div class="center">
+      <figure>
+        <img class="figure" src="block_diagram.svg" alt="Box diagram">
+      </figure>
+      <section>
+        <h2> Abstract</h2>
+        <p>
+        Single-channel speech dereverberation aims at extracting a dry speech signal from a recording affected by the acoustic reflections in a room. However, most current deep learning-based approaches for speech dereverberation are not interpretable for room acoustics, and can be considered as black-box systems in that regard. In this work, we address this problem by regularizing the training loss using a novel physical coherence loss which encourages the room impulse response (RIR) induced by the dereverberated output of the model to match the acoustic properties of the room in which the signal was recorded. Our investigation demonstrates the preservation of the original dereverberated signal alongside the provision of a more physically coherent RIR.
+        </p>
+      </section>
+    </div>
   </body>
 </html>

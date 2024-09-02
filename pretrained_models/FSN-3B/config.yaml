@@ -1,0 +1,204 @@
+# lightning.pytorch==2.0.1
+seed_everything: 6
+trainer:
+  accelerator: auto
+  strategy: auto
+  devices: auto
+  num_nodes: 1
+  precision: 32-true
+  logger:
+    class_path: lightning.pytorch.loggers.TensorBoardLogger
+    init_args:
+      save_dir: lightning_logs/
+      name: seed6_0.1_3_noss_norecompute
+      version: null
+      log_graph: false
+      default_hp_metric: false
+      prefix: ''
+      sub_dir: null
+  callbacks:
+  - class_path: lightning.pytorch.callbacks.ModelSummary
+    init_args:
+      max_depth: 2
+  - class_path: lightning.pytorch.callbacks.ModelCheckpoint
+    init_args:
+      dirpath: null
+      filename: null
+      monitor: null
+      verbose: false
+      save_last: null
+      save_top_k: -1
+      save_weights_only: false
+      mode: min
+      auto_insert_metric_name: true
+      every_n_train_steps: 5000
+      train_time_interval: null
+      every_n_epochs: null
+      save_on_train_epoch_end: null
+  fast_dev_run: false
+  max_epochs: 60
+  min_epochs: null
+  max_steps: -1
+  min_steps: null
+  max_time: null
+  limit_train_batches: null
+  limit_val_batches: null
+  limit_test_batches: null
+  limit_predict_batches: null
+  overfit_batches: 0.0
+  val_check_interval: 5000
+  check_val_every_n_epoch: 1
+  num_sanity_val_steps: null
+  log_every_n_steps: null
+  enable_checkpointing: null
+  enable_progress_bar: null
+  enable_model_summary: null
+  accumulate_grad_batches: 1
+  gradient_clip_val: null
+  gradient_clip_algorithm: null
+  deterministic: null
+  benchmark: null
+  inference_mode: true
+  use_distributed_sampler: true
+  profiler: null
+  detect_anomaly: false
+  barebones: false
+  plugins:
+  - class_path: lightning.fabric.plugins.environments.SLURMEnvironment
+    init_args:
+      auto_requeue: false
+      requeue_signal: null
+  sync_batchnorm: false
+  reload_dataloaders_every_n_epochs: 0
+  default_root_dir: null
+model:
+  preproc:
+    class_path: model.prepostproc.FullSubNetPreProc
+    init_args:
+      n_fft: 512
+      hop_length: 256
+      win_length: 512
+      waveform_length: 49151
+  base_model:
+    class_path: model.base_models.fullsubnet.FullSubNet
+    init_args:
+      num_freqs: 257
+      look_ahead: 2
+      sequence_model: LSTM
+      fb_num_neighbors: 0
+      sb_num_neighbors: 15
+      fb_output_activate_function: ReLU
+      sb_output_activate_function: false
+      fb_model_hidden_size: 512
+      sb_model_hidden_size: 384
+      norm_type: offline_laplace_norm
+      num_groups_in_drop_band: 1
+      weight_init: false
+      bidirectional: true
+  postproc:
+    class_path: model.prepostproc.FullSubNetPostProc
+    init_args:
+      n_fft: 512
+      hop_length: 256
+      win_length: 512
+      waveform_len: 49151
+  nonblind_rir_estimator:
+    class_path: model.convolutive_models.CTF
+    init_args:
+      epsilon_lambda: 1.0
+      output_len: 64
+      num_absolute_cross_bands: 1
+      pad_X_hat_before_unfold: true
+      crop_toeplitz: false
+      return_stft: true
+      solve_qr: true
+  physical_properties_estimator:
+    class_path: model.physical_properties_estimators.edr.EDR
+    init_args:
+      return_dB: true
+      scale: bandwise
+  base_model_loss:
+    class_path: model.losses.FullSubNetLoss
+    init_args:
+      num_groups_in_drop_band: 1
+      weight_real: 1.0
+      weight_imag: 1.0
+      weight_phase: 0.0
+  signal_loss:
+    class_path: model.losses.ZeroLoss
+  physical_properties_loss:
+    class_path: model.losses.FilteredLoss
+    init_args:
+      min: -20.0
+      max: .inf
+      base_loss:
+        class_path: torch.nn.MSELoss
+        init_args:
+          size_average: null
+          reduce: null
+          reduction: mean
+      consider_only_target_mask: true
+  base_model_loss_weight_function: '1.0'
+  signal_loss_weight_function: '0.0'
+  physical_properties_loss_weight_function: '0.1'
+  fs: 16000
+  recompute_k: false
+  metrics:
+  - stoi
+  - stoi_input
+  - sisdr
+  - sisdr_input
+  rir_estimation_error_compensator: null
+  grad_balancer:
+    class_path: model.grad_balancers.GradNorm
+    init_args:
+      ema_rate: 0.99
+      initial_model_and_signal_loss_weight: 1.0
+      initial_physical_properties_loss_weight: 0.0
+      apply_at_backward: false
+data:
+  class_path: datasets.WSJSimulatedRirDataModule
+  init_args:
+    rir_dataset:
+      class_path: datasets.SynthethicRirDataset
+      init_args:
+        rir_root: ./data/rirs_v2
+        num_new_rooms: 0
+        room_dim_range:
+        - 5.0
+        - 10.0
+        room_height_range:
+        - 2.5
+        - 4.0
+        rt60_range:
+        - 0.2
+        - 1.0
+        num_sources_per_room: 1
+        num_mics_per_room: 16
+        min_distance_to_wall: 0.5
+        mic_height_range:
+        - 0.7
+        - 2.0
+        fs: 16000
+        query: ''
+        return_properties:
+        - rt_60
+        source_mic_distance_range:
+        - 0.75
+        - 2.5
+    rir_dataset_test: null
+    batch_size: 2
+    audio_root: ./data/speech
+    dry_signal_target_len: 49151
+    rir_target_len: 16383
+    align_and_scale_to_direct_path: true
+    dry_signal_start_index_train: null
+    dry_signal_start_index_val_test: 16000
+    proportion_val_audio: 0.01
+    proportion_val_rir: 0.01
+    num_workers: 8
+    convolve_on_gpu: true
+    resampling_transform: null
+    num_distinct_rirs_per_batch: null
+    normalize: true
+    ignore_silent_windows: true

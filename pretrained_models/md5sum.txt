@@ -1,0 +1,11 @@
+d41d8cd98f00b204e9800998ecf8427e  ./md5sum.txt
+08271f7c6195706dc1371a7bc9e3f405  ./FSN-SSB/config.yaml
+d67f52c5154d8895a860df492f1cf688  ./FSN-SSB/checkpoints/epoch=21-step=330000.ckpt
+0ed350c6fa76b0c3ee5e0b4fbb6078f1  ./FSN-SB/config.yaml
+79e48e20d1534b719e0bbb1d2242ea50  ./FSN-SB/checkpoints/epoch=21-step=330000.ckpt
+9d7213ae393d97b110f4c1208358506e  ./FSN-CSB/config.yaml
+1bc172e160560ae498b36fce841eb65d  ./FSN-CSB/checkpoints/epoch=21-step=330000.ckpt
+a232b3d953bb9d3ffb347d7858458621  ./FSN/config.yaml
+5e0443c9d7e54a0c1aa6b94706c23183  ./FSN/checkpoints/epoch=21-step=330000.ckpt
+1c17b7428766185aad338f0994531963  ./FSN-3B/config.yaml
+fd58e370215e31e690434462ce9f5b91  ./FSN-3B/checkpoints/epoch=21-step=330000.ckpt

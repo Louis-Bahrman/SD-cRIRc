@@ -14,7 +14,7 @@ Single-channel speech dereverberation aims at extracting a dry speech signal fro
 
 ## Model Weights
 
-Model Weights can be obtained from  `louis [ɗօt] bahrman [аt] telecom-paris.fr`
+Model weights can be obtained from  `louis [ɗօt] bahrman [аt] telecom-paris.fr`
 
 ## Citing this work
 

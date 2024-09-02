@@ -1,8 +1,8 @@
 # Speech dereverberation constrained on room impulse response characteristics
 
-[Paper (ISCA)](https://www.doi.org/10.21437/Interspeech.2024-1173) &nbsp;
-<a href="https://www.arxiv.org/abs/2407.08657">(Arxiv)</a> &nbsp;
-<a href="https://hal.science/hal-04640068/">(HAL)</a> &nbsp;
+[Paper](https://www.doi.org/10.21437/Interspeech.2024-1173) &nbsp;
+<a href="https://www.arxiv.org/abs/2407.08657">Arxiv</a> &nbsp;
+<a href="https://hal.science/hal-04640068/">HAL</a> &nbsp;
 <a href="https://www.github.com/Louis-Bahrman/SD-cRIRc">Code</a> &nbsp;
 [Poster](docs/poster.pdf)
 

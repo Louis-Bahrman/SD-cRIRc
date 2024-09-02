@@ -22,8 +22,9 @@
       </div>
       <div class="center" style="max-width:600px">
         <div class="container">
-          <a href="https://www.arxiv.org/abs/2407.08657">Paper (Arxiv)</a> &nbsp;
-          <a href="https://hal.science/hal-04640068/">Paper (HAL)</a> &nbsp;
+          <a href="https://www.doi.org/10.21437/Interspeech.2024-1173">Paper (ISCA)</a> &nbsp;
+          <a href="https://www.arxiv.org/abs/2407.08657">(Arxiv)</a> &nbsp;
+          <a href="https://hal.science/hal-04640068/">(HAL)</a> &nbsp;
           <a href="https://www.github.com/Louis-Bahrman/SD-cRIRc">Code</a> &nbsp;
           <a href="poster.pdf" target="_blank">Poster</a>
         </div>
@@ -34,13 +35,29 @@
     </div>
     <div class="center">
       <figure>
-        <img class="figure" src="block_diagram.svg" alt="Box diagram">
+        <img class="figure" src="block_diagram.svg" alt="Block diagram">
       </figure>
       <section>
-        <h2> Abstract</h2>
+        <h2>Abstract</h2>
         <p>
         Single-channel speech dereverberation aims at extracting a dry speech signal from a recording affected by the acoustic reflections in a room. However, most current deep learning-based approaches for speech dereverberation are not interpretable for room acoustics, and can be considered as black-box systems in that regard. In this work, we address this problem by regularizing the training loss using a novel physical coherence loss which encourages the room impulse response (RIR) induced by the dereverberated output of the model to match the acoustic properties of the room in which the signal was recorded. Our investigation demonstrates the preservation of the original dereverberated signal alongside the provision of a more physically coherent RIR.
         </p>
+      </section>
+      <section>
+        <h2>Citing this work</h2>
+        If you use this work in your research or business, please cite it using the following BibTeX entry:
+        <pre>
+        <code>
+@inproceedings{bahrman24_interspeech,
+  title     = {Speech dereverberation constrained on room impulse response characteristics},
+  author    = {Louis Bahrman and Mathieu Fontaine and Jonathan {Le Roux} and Gaël Richard},
+  year      = {2024},
+  booktitle = {Interspeech 2024},
+  pages     = {622--626},
+  doi       = {10.21437/Interspeech.2024-1173},
+}
+        </code>
+        </pre>
       </section>
     </div>
   </body>

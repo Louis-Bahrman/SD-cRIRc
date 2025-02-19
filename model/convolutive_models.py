@@ -51,7 +51,7 @@ class CTF(nn.Module):
         self.crop_toeplitz = crop_toeplitz
         self.return_stft = return_stft
         self.solve_qr = solve_qr
-
+        self.solve_if_almost_determined = False
         self.num_total_bands = 2 * num_absolute_cross_bands + 1
         if not self.pad_X_hat_before_unfold:
             raise NotImplementedError("todo reconstruction and shape")

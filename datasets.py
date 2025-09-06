@@ -284,7 +284,7 @@ class SynthethicRirDataset(torch.utils.data.Dataset):
         waveform, sample_rate = torchaudio.load(rir_path)
         if sample_rate != self.fs:
             raise ValueError(f"sample rate should be {self.fs}, but got {sample_rate}")
-        return waveform, torch.tensor(other_properties).float()
+        return waveform, torch.tensor(other_properties.to_numpy(dtype=float))
 
     def random_split_by_rooms(self, *proportions):
         # Train test splits is implemented here since we use room information

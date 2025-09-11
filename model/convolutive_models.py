@@ -90,7 +90,7 @@ class CTF(nn.Module):
     #        ), dim=-2) # F + 2F' For zero-padding and hermitian symmetry
 
     def compute_modified_toeplitz(self, Y, X_hat):
-        assert self.num_total_bands * self.output_len <= X_hat.size(-1), "under-determined"
+        assert self.num_total_bands * self.output_len <= Y.size(-1), "under-determined"
         F, N_X, N_Y, N_K, F_prim = (
             X_hat.size(-2),
             X_hat.size(-1),
